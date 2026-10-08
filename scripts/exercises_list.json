@@ -1,0 +1,452 @@
+[
+  {
+    "id": "ex-squat",
+    "name": "Squats",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_squat_human.jpg"
+  },
+  {
+    "id": "ex-chair-squats",
+    "name": "Chair Squats",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_chair_squats.svg"
+  },
+  {
+    "id": "ex-plank",
+    "name": "Plank",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_plank_human.jpg"
+  },
+  {
+    "id": "ex-knee-plank",
+    "name": "Knee Plank",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_knee_plank.svg"
+  },
+  {
+    "id": "ex-crunches",
+    "name": "Crunches",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_crunches.svg"
+  },
+  {
+    "id": "ex-jumping-jacks",
+    "name": "Jumping Jacks",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_jumping_jacks_human.jpg"
+  },
+  {
+    "id": "ex-step-jacks",
+    "name": "Step Jacks (Low Impact)",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_step_jacks.svg"
+  },
+  {
+    "id": "ex-lunge",
+    "name": "Lunges",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_lunge_human.jpg"
+  },
+  {
+    "id": "ex-supported-lunges",
+    "name": "Supported Lunges",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_supported_lunges.svg"
+  },
+  {
+    "id": "ex-wall-sit",
+    "name": "Wall Sit",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_wall_sit_human.jpg"
+  },
+  {
+    "id": "ex-situps",
+    "name": "Sit-ups",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_situps.svg"
+  },
+  {
+    "id": "ex-butt-kicks",
+    "name": "Butt Kicks",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_butt_kicks.svg"
+  },
+  {
+    "id": "ex-pushup",
+    "name": "Push-ups",
+    "category": "Home Workout",
+    "image": "assets/images/exercises/ex_pushup_human.jpg"
+  },
+  {
+    "id": "gm-marching-in-place",
+    "name": "Marching in Place",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_marching_in_place.svg"
+  },
+  {
+    "id": "gm-arm-circles",
+    "name": "Arm Circles",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_arm_circles.svg"
+  },
+  {
+    "id": "gm-shoulder-rolls",
+    "name": "Shoulder Rolls",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_shoulder_rolls.svg"
+  },
+  {
+    "id": "gm-neck-mobility",
+    "name": "Neck Mobility",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_neck_mobility.svg"
+  },
+  {
+    "id": "gm-ankle-circles",
+    "name": "Ankle Circles",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_ankle_circles.svg"
+  },
+  {
+    "id": "gm-wrist-circles",
+    "name": "Wrist Circles",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_wrist_circles.svg"
+  },
+  {
+    "id": "gm-side-steps",
+    "name": "Side Steps",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_side_steps.svg"
+  },
+  {
+    "id": "gm-heel-raises",
+    "name": "Heel Raises",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_heel_raises.svg"
+  },
+  {
+    "id": "gm-toe-raises",
+    "name": "Toe Raises",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_toe_raises.svg"
+  },
+  {
+    "id": "gm-standing-knee-lifts",
+    "name": "Standing Knee Lifts",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_standing_knee_lifts.svg"
+  },
+  {
+    "id": "gm-standing-side-bends",
+    "name": "Standing Side Bends",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_standing_side_bends.svg"
+  },
+  {
+    "id": "gm-gentle-torso-rotations",
+    "name": "Gentle Torso Rotations",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_gentle_torso_rotations.svg"
+  },
+  {
+    "id": "gm-sit-to-stand",
+    "name": "Sit-to-Stand",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_sit_to_stand.svg"
+  },
+  {
+    "id": "gm-wall-pushups",
+    "name": "Wall Push-ups",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_wall_pushups.svg"
+  },
+  {
+    "id": "gm-step-touches",
+    "name": "Step Touches",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_step_touches.svg"
+  },
+  {
+    "id": "gm-gentle-leg-swings",
+    "name": "Gentle Leg Swings",
+    "category": "Gentle Movement",
+    "image": "assets/images/exercises/ex_gentle_leg_swings.svg"
+  },
+  {
+    "id": "yoga-downward-dog",
+    "name": "Downward-Facing Dog (Adho Mukha Svanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_downward_dog.svg"
+  },
+  {
+    "id": "yoga-three-legged-dog",
+    "name": "Three-Legged Downward Dog (Tri Pada Adho Mukha Svanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_three_legged_dog.svg"
+  },
+  {
+    "id": "yoga-knee-to-nose",
+    "name": "Knee-to-Nose Dog",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_knee_to_nose.svg"
+  },
+  {
+    "id": "yoga-crescent-moon",
+    "name": "Crescent Moon (Anjaneyasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_crescent_moon.svg"
+  },
+  {
+    "id": "yoga-revolved-lunge",
+    "name": "Revolved Lunge (Parivrtta Anjaneyasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_revolved_lunge.svg"
+  },
+  {
+    "id": "yoga-crescent-lunge-twist",
+    "name": "Crescent Lunge Twist",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_crescent_lunge_twist.svg"
+  },
+  {
+    "id": "yoga-knees-chest-chin",
+    "name": "Knees-Chest-Chin (Ashtanga Namaskara)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_knees_chest_chin.svg"
+  },
+  {
+    "id": "yoga-cobra-pose",
+    "name": "Cobra Pose (Bhujangasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_cobra_pose.svg"
+  },
+  {
+    "id": "yoga-pigeon-pose",
+    "name": "Pigeon Pose (Eka Pada Rajakapotasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_pigeon_pose.svg"
+  },
+  {
+    "id": "yoga-sleeping-pigeon",
+    "name": "Sleeping Pigeon",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_sleeping_pigeon.svg"
+  },
+  {
+    "id": "yoga-hero-pose",
+    "name": "Hero Pose (Virasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_hero_pose.svg"
+  },
+  {
+    "id": "yoga-tabletop",
+    "name": "Tabletop Pose (Bharmanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_tabletop.svg"
+  },
+  {
+    "id": "yoga-half-bow",
+    "name": "Half Bow (Ardha Dhanurasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_half_bow.svg"
+  },
+  {
+    "id": "yoga-standing-forward-fold",
+    "name": "Standing Forward Fold (Uttanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_standing_forward_fold.svg"
+  },
+  {
+    "id": "yoga-standing-backbend",
+    "name": "Standing Backbend (Anuvittasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_standing_backbend.svg"
+  },
+  {
+    "id": "yoga-mountain-pose",
+    "name": "Mountain Pose (Tadasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_mountain_pose.svg"
+  },
+  {
+    "id": "yoga-warrior-1",
+    "name": "Warrior I (Virabhadrasana I)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_warrior_1.svg"
+  },
+  {
+    "id": "yoga-triangle-pose",
+    "name": "Triangle Pose (Trikonasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_triangle_pose.svg"
+  },
+  {
+    "id": "yoga-pyramid-pose",
+    "name": "Pyramid Pose (Parsvottanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_pyramid_pose.svg"
+  },
+  {
+    "id": "yoga-crescent-lunge",
+    "name": "Crescent Lunge (Ashta Chandrasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_crescent_lunge.svg"
+  },
+  {
+    "id": "yoga-low-lunge",
+    "name": "Low Lunge (Anjaneyasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_low_lunge.svg"
+  },
+  {
+    "id": "yoga-childs-pose",
+    "name": "Child\u2019s Pose (Balasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_childs_pose.svg"
+  },
+  {
+    "id": "yoga-cat-cow",
+    "name": "Cat-Cow Flow (Marjaryasana-Bitilasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_cat_cow.svg"
+  },
+  {
+    "id": "yoga-chair-pose",
+    "name": "Chair Pose (Utkatasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_chair_pose.svg"
+  },
+  {
+    "id": "yoga-runners-lunge",
+    "name": "Runner\\",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_runners_lunge.svg"
+  },
+  {
+    "id": "yoga-revolved-side-angle",
+    "name": "Revolved Side Angle (Parivrtta Parsvakonasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_revolved_side_angle.svg"
+  },
+  {
+    "id": "yoga-low-plank",
+    "name": "Low Plank / Four-Limbed Staff (Chaturanga Dandasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_low_plank.svg"
+  },
+  {
+    "id": "yoga-upward-dog",
+    "name": "Upward-Facing Dog (Urdhva Mukha Svanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_upward_dog.svg"
+  },
+  {
+    "id": "yoga-reverse-warrior",
+    "name": "Reverse Warrior (Viparita Virabhadrasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_reverse_warrior.svg"
+  },
+  {
+    "id": "yoga-warrior-2",
+    "name": "Warrior II (Virabhadrasana II)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_warrior_2.svg"
+  },
+  {
+    "id": "yoga-extended-side-angle",
+    "name": "Extended Side Angle (Utthita Parsvakonasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_extended_side_angle.svg"
+  },
+  {
+    "id": "yoga-meditation",
+    "name": "Meditation / Pranayama",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_meditation.svg"
+  },
+  {
+    "id": "yoga-butterfly-pose",
+    "name": "Butterfly Forward Fold (Baddha Konasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_butterfly_pose.svg"
+  },
+  {
+    "id": "yoga-seated-pose",
+    "name": "Easy Seated Pose (Sukhasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_seated_pose.svg"
+  },
+  {
+    "id": "yoga-savasana",
+    "name": "Corpse Pose (Savasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_savasana.svg"
+  },
+  {
+    "id": "yoga-bridge-pose",
+    "name": "Bridge Pose (Setu Bandhasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_bridge_pose.svg"
+  },
+  {
+    "id": "yoga-seated-forward-fold",
+    "name": "Seated Forward Fold (Paschimottanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_seated_forward_fold.svg"
+  },
+  {
+    "id": "yoga-supine-knee-to-chest",
+    "name": "Supine Knee-to-Chest (Apanasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_supine_knee_to_chest.svg"
+  },
+  {
+    "id": "yoga-tree-pose",
+    "name": "Tree Pose (Vrikshasana)",
+    "category": "Yoga",
+    "image": "assets/images/exercises/yoga_tree_pose.svg"
+  },
+  {
+    "id": "ex-incline-pushup",
+    "name": "Incline Push-ups",
+    "category": "Strength",
+    "image": "assets/images/exercises/ex_incline_pushup.svg"
+  },
+  {
+    "id": "ex-shoulder-taps",
+    "name": "Shoulder Taps",
+    "category": "Core",
+    "image": "assets/images/exercises/ex_shoulder_taps.svg"
+  },
+  {
+    "id": "ex-db-press",
+    "name": "Dumbbell Shoulder Press",
+    "category": "Strength",
+    "image": "assets/images/exercises/ex_db_press.svg"
+  },
+  {
+    "id": "ex-glute-bridges",
+    "name": "Glute Bridges",
+    "category": "Strength",
+    "image": "assets/images/exercises/ex_glute_bridges.svg"
+  },
+  {
+    "id": "ex-bird-dog",
+    "name": "Bird Dog",
+    "category": "Mobility",
+    "image": "assets/images/exercises/ex_bird_dog.svg"
+  },
+  {
+    "id": "ex-dead-bug",
+    "name": "Dead Bug",
+    "category": "Core",
+    "image": "assets/images/exercises/ex_dead_bug.svg"
+  },
+  {
+    "id": "ex-high-knees",
+    "name": "High Knees",
+    "category": "Cardio",
+    "image": "assets/images/exercises/ex_high_knees.svg"
+  }
+]

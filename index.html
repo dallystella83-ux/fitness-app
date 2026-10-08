@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitGuide AI | Smart Fitness, Home Workouts, Yoga &amp; Personalized Nutrition</title>
+    <meta name="description" content="Personalized fitness, Home Workout Plans, complete Yoga Library, BMI calculations, and evidence-informed Indian nutrition guidance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SPLASH SCREEN — Full-screen REAL HUMAN opening with dark elegant overlay
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="splash-screen">
+        <!-- Background fitness photo -->
+        <div class="splash-bg" id="splash-bg"></div>
+        <!-- Dark gradient overlay -->
+        <div class="splash-overlay"></div>
+
+        <!-- Center content with exact minimal required copy -->
+        <div class="splash-content" id="splash-content">
+            <div class="splash-logo-mark">
+                <i class="fa-solid fa-bolt"></i> FITGUIDE AI
+            </div>
+
+            <h1 class="splash-headline">
+                ENERGY &amp; PERSISTENCE<br>
+                <span class="hl-accent">— BUILD A STRONGER YOU.</span>
+            </h1>
+        </div>
+
+        <!-- Subtle loading progress bar -->
+        <div class="splash-progress-wrap">
+            <div class="splash-progress-track">
+                <div class="splash-progress-fill" id="splash-progress"></div>
+            </div>
+            <span class="splash-progress-label">Preparing your experience</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TOP NAVIGATION BAR — Compact FITGUIDE AI Header
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="main-navbar" style="display:none;">
+        <div class="container">
+            <div class="logo" data-target="home" onclick="app.navigateTo('home')">
+                <div class="logo-icon-box">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="logo-brand">FITGUIDE <span class="logo-ai-tag">AI</span></span>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links">
+                <li><a data-target="home" class="active" onclick="app.navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a data-target="dashboard" onclick="app.navigateTo('dashboard')"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                <li><a data-target="profile" onclick="app.navigateTo('profile')"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <li><a data-target="assistant" id="nav-ai-btn" onclick="app.navigateTo('assistant')" class="nav-ai-link"><i class="fa-solid fa-robot"></i> AI</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="app.toggleTheme()" aria-label="Toggle Theme">
+                    <span id="theme-toggle-text">☀️ Light</span>
+                </button>
+
+                <!-- 3-Line Menu -->
+                <button class="corner-menu-btn" id="corner-menu-btn" onclick="app.toggleNavDrawer()" aria-label="Open Navigation Menu" title="Open Full Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         OFFCANVAS SLIDEOUT NAVIGATION DRAWER
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div class="drawer-backdrop" id="drawer-backdrop" onclick="app.closeNavDrawer()">
+        <div class="nav-drawer" onclick="event.stopPropagation()">
+            <div class="drawer-header">
+                <div class="drawer-title">
+                    <div class="logo-icon-box" style="width:26px;height:26px;font-size:0.75rem;">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span>FITGUIDE MENU</span>
+                </div>
+                <button class="drawer-close-btn" onclick="app.closeNavDrawer()" aria-label="Close Menu">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Drawer User Info & Auth Controls -->
+            <div class="drawer-user-card">
+                <div class="drawer-user-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="drawer-user-meta">
+                    <strong id="drawer-user-name">Alex Mercer</strong>
+                    <span id="drawer-user-sub">MALE Athlete • Personal Session</span>
+                </div>
+            </div>
+
+            <div class="drawer-auth-actions" style="display:flex;gap:0.4rem;padding:0 1rem 0.5rem 1rem;">
+                <button class="btn-primary-sm" style="flex:1;" onclick="app.closeNavDrawer(); app.viewMonthlyReport();">
+                    <i class="fa-solid fa-file-waveform"></i> My Report
+                </button>
+                <button class="btn-outline-sm btn-danger-sm" style="flex:1;" onclick="app.closeNavDrawer(); app.confirmSignOut();">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+                </button>
+            </div>
+
+            <div class="drawer-body">
+                <div class="drawer-section-label">Core Navigation</div>
+                <ul class="drawer-nav-list">
+                    <li><a class="drawer-nav-item active" onclick="app.navigateDrawer('home')"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('dashboard')"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('profile')"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a class="drawer-nav-item drawer-ai-highlight" onclick="app.navigateDrawer('assistant')"><i class="fa-solid fa-robot text-accent"></i> AI Fitness Assistant <span class="badge-accent" style="margin-left:auto;font-size:0.65rem;padding:2px 7px;">Gemini</span></a></li>
+                </ul>
+
+                <div class="drawer-section-label">Fitness &amp; Movement</div>
+                <ul class="drawer-nav-list">
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('workout-plans')"><i class="fa-solid fa-dumbbell"></i> 7-Day Workout Plans</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('yoga-library')"><i class="fa-solid fa-spa"></i> Yoga Library &amp; Collections</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('exercises')"><i class="fa-solid fa-person-running"></i> Complete Movement Library</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.navigateDrawer('nutrition')"><i class="fa-solid fa-bowl-food"></i> Personalized Indian Nutrition</a></li>
+                </ul>
+
+                <div class="drawer-section-label">Tools &amp; Accounts</div>
+                <ul class="drawer-nav-list">
+                    <li><a class="drawer-nav-item" onclick="app.closeNavDrawer(); app.viewMonthlyReport();"><i class="fa-solid fa-chart-pie text-accent"></i> My Monthly Report</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.closeNavDrawer(); app.showAuthModal();"><i class="fa-solid fa-users"></i> Switch Athlete Account</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.closeNavDrawer(); app.showStreakModal();"><i class="fa-solid fa-fire text-accent"></i> Movement Streak &amp; Badges</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.closeNavDrawer(); app.startAssessment();"><i class="fa-solid fa-pen-to-square"></i> Retake Assessment</a></li>
+                    <li><a class="drawer-nav-item" onclick="app.toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Switch Theme (Light/Dark)</a></li>
+                </ul>
+            </div>
+
+            <div class="drawer-footer">
+                <p style="font-size:0.73rem;margin:0;"><i class="fa-solid fa-shield-halved text-accent"></i> Evidence-informed algorithms &amp; encrypted user sessions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MAIN APPLICATION CONTAINER
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <main id="app-container" style="display:none;">
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             1. HOME PAGE — Spacious, Minimal Masterpiece Hero + ONLY "Create My Plan →"
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="home" class="page-section active">
+            <div class="container">
+                <div class="hero">
+
+                    <!-- Left: Clean minimal typography + ONLY "Create My Plan →" -->
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Understand your body.<br>
+                            <span class="ht-accent">Build better habits.</span>
+                        </h1>
+
+                        <p class="hero-desc">
+                            Personalized home workouts, yoga flows, and nutrition guidance calibrated to your body and lifestyle.
+                        </p>
+
+                        <div class="hero-cta-row">
+                            <button class="hero-cta-main" onclick="app.startAssessment()">
+                                Create My Plan <i class="fa-solid fa-arrow-right arrow-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Premium transparent-style fitness visual (no badges/chips) -->
+                    <div class="hero-visual">
+                        <div class="hero-glass-container">
+                            <img
+                                src="assets/images/splash_hero.jpg"
+                                alt="FitGuide AI Athlete Demonstration"
+                                class="hero-glass-img"
+                                onerror="this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=900'"
+                            >
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Home Page Inline Medical Disclaimer -->
+                <div class="home-disclaimer-box mt-2" style="padding: 0.85rem 1.1rem; background: var(--card-2); border: 1px solid var(--border-light); border-left: 3px solid var(--accent); border-radius: var(--r-md); font-size: 0.78rem; color: var(--text-2); line-height: 1.5;">
+                    <i class="fa-solid fa-shield-halved text-accent" style="margin-right: 0.4rem;"></i>
+                    <strong>Medical Disclaimer:</strong> FitGuide AI is for general wellness &amp; fitness guidance only. Consult a healthcare professional before starting any new training or nutrition plan.
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             2. USER ASSESSMENT (9-step form — unchanged logic)
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="assessment" class="page-section">
+            <div class="container small-container">
+                <div class="card">
+                    <div class="text-center mb-2">
+                        <h2>Personal Fitness &amp; Nutrition Assessment</h2>
+                        <p class="text-muted text-sm">Tell us about your body, goals, and preferred intensity for an accurate plan.</p>
+                    </div>
+
+                    <div class="step-indicator" id="step-indicators">
+                        <div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div>
+                        <div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div>
+                        <div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div>
+                    </div>
+
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step active" id="step-1">
+                        <h3>1. Basic Information</h3>
+                        <div class="form-group mt-1">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" placeholder="e.g. 28" min="15" max="100" value="28">
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Biological Sex</label>
+                            <select id="sex">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Body Measurements -->
+                    <div class="form-step" id="step-2">
+                        <h3>2. Body Measurements</h3>
+                        <div class="form-group mt-1">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" placeholder="e.g. 175" min="100" max="250" value="175">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" placeholder="e.g. 70" min="30" max="300" value="70">
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Daily Activity Level -->
+                    <div class="form-step" id="step-3">
+                        <h3>3. Daily Activity Level</h3>
+                        <div class="option-grid mt-1">
+                            <div class="option-card" data-val="sedentary"><i class="fa-solid fa-couch"></i> Sedentary<br><span class="text-xs text-muted">Desk job, little movement</span></div>
+                            <div class="option-card" data-val="light"><i class="fa-solid fa-person-walking"></i> Lightly Active<br><span class="text-xs text-muted">Walks 1-3 days/wk</span></div>
+                            <div class="option-card selected" data-val="moderate"><i class="fa-solid fa-person-running"></i> Moderately Active<br><span class="text-xs text-muted">Exercise 3-5 days/wk</span></div>
+                            <div class="option-card" data-val="active"><i class="fa-solid fa-fire"></i> Very Active<br><span class="text-xs text-muted">Hard training 6-7 days</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Fitness Level -->
+                    <div class="form-step" id="step-4">
+                        <h3>4. Current Fitness Level</h3>
+                        <div class="option-grid mt-1">
+                            <div class="option-card selected" data-val="beginner"><i class="fa-solid fa-seedling"></i> Beginner<br><span class="text-xs text-muted">New or returning</span></div>
+                            <div class="option-card" data-val="intermediate"><i class="fa-solid fa-tree"></i> Intermediate<br><span class="text-xs text-muted">Regular 6+ months</span></div>
+                            <div class="option-card" data-val="advanced"><i class="fa-solid fa-mountain"></i> Advanced<br><span class="text-xs text-muted">Consistent intense training</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Primary Goal -->
+                    <div class="form-step" id="step-5">
+                        <h3>5. Primary Goal</h3>
+                        <div class="option-grid mt-1">
+                            <div class="option-card selected" data-val="loss"><i class="fa-solid fa-arrow-trend-down"></i> Weight Loss</div>
+                            <div class="option-card" data-val="gain"><i class="fa-solid fa-arrow-trend-up"></i> Weight Gain / Muscle</div>
+                            <div class="option-card" data-val="maintain"><i class="fa-solid fa-scale-balanced"></i> Maintain Fitness</div>
+                            <div class="option-card" data-val="fitness"><i class="fa-solid fa-heart-pulse"></i> General Fitness</div>
+                            <div class="option-card" data-val="gentle"><i class="fa-solid fa-feather"></i> Gentle Movement</div>
+                            <div class="option-card" data-val="yoga"><i class="fa-solid fa-spa"></i> Yoga &amp; Balance</div>
+                            <div class="option-card" data-val="flexibility"><i class="fa-solid fa-person-praying"></i> Flexibility</div>
+                            <div class="option-card" data-val="mobility"><i class="fa-solid fa-arrows-spin"></i> Mobility &amp; Joint Health</div>
+                            <div class="option-card" data-val="relaxation"><i class="fa-solid fa-moon"></i> Relaxation</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Preferred Intensity -->
+                    <div class="form-step" id="step-6">
+                        <h3>6. Preferred Exercise Intensity</h3>
+                        <p class="text-xs text-muted">When you choose Gentle, we strictly recommend soothing, joint-friendly movements.</p>
+                        <div class="option-grid mt-1">
+                            <div class="option-card" data-val="Gentle"><i class="fa-solid fa-feather text-accent"></i> Gentle<br><span class="text-xs text-muted">Very low strain</span></div>
+                            <div class="option-card" data-val="Low"><i class="fa-solid fa-shoe-prints text-accent"></i> Low<br><span class="text-xs text-muted">Mild exertion</span></div>
+                            <div class="option-card selected" data-val="Moderate"><i class="fa-solid fa-bolt text-accent"></i> Moderate<br><span class="text-xs text-muted">Noticeable breathing</span></div>
+                            <div class="option-card" data-val="Challenging"><i class="fa-solid fa-fire-flame-curved text-accent"></i> Challenging<br><span class="text-xs text-muted">High energy</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 7: Nutrition & Food Preferences -->
+                    <div class="form-step" id="step-7">
+                        <h3>7. Nutrition &amp; Diet Preferences</h3>
+                        <label class="mt-1" style="font-weight:600;font-size:0.84rem;">Diet Type</label>
+                        <div class="option-grid mt-1">
+                            <div class="option-card selected" data-val="veg"><i class="fa-solid fa-carrot"></i> Vegetarian</div>
+                            <div class="option-card" data-val="non-veg"><i class="fa-solid fa-drumstick-bite"></i> Non-Vegetarian</div>
+                            <div class="option-card" data-val="vegan"><i class="fa-solid fa-leaf"></i> Vegan</div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="food-preferences">Food Preferences, Dislikes or Allergies (Optional)</label>
+                            <input type="text" id="food-preferences" placeholder="e.g. No dairy, lactose intolerant, nut allergy, prefers high fiber...">
+                        </div>
+                    </div>
+
+                    <!-- Step 8: Available Equipment -->
+                    <div class="form-step" id="step-8">
+                        <h3>8. Available Equipment</h3>
+                        <div class="option-grid mt-1">
+                            <div class="option-card selected" data-val="No equipment"><i class="fa-solid fa-person"></i> No Equipment</div>
+                            <div class="option-card" data-val="Mat"><i class="fa-solid fa-rug"></i> Yoga Mat</div>
+                            <div class="option-card" data-val="Dumbbells"><i class="fa-solid fa-dumbbell"></i> Dumbbells / Bands</div>
+                            <div class="option-card" data-val="Gym"><i class="fa-solid fa-dumbbell"></i> Full Gym Access</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 9: Workout Time Per Day -->
+                    <div class="form-step" id="step-9">
+                        <h3>9. Workout Time Per Day</h3>
+                        <div class="option-grid mt-1">
+                            <div class="option-card" data-val="10"><i class="fa-solid fa-clock"></i> 10 mins<br><span class="text-xs text-muted">Micro routine</span></div>
+                            <div class="option-card selected" data-val="20"><i class="fa-solid fa-clock"></i> 20 mins<br><span class="text-xs text-muted">Balanced session</span></div>
+                            <div class="option-card" data-val="30"><i class="fa-solid fa-clock"></i> 30 mins<br><span class="text-xs text-muted">Comprehensive</span></div>
+                            <div class="option-card" data-val="45"><i class="fa-solid fa-clock"></i> 45 mins<br><span class="text-xs text-muted">Deep flow/strength</span></div>
+                            <div class="option-card" data-val="60"><i class="fa-solid fa-clock"></i> 60+ mins<br><span class="text-xs text-muted">Full training</span></div>
+                        </div>
+                    </div>
+
+                    <div class="step-actions">
+                        <button class="btn-secondary" onclick="app.prevStep()">Back</button>
+                        <button class="btn-primary" onclick="app.nextStep()">Next Step <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             3. DAILY DASHBOARD
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="dashboard" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <h2>Your Daily Metrics Dashboard</h2>
+                    <p class="text-muted text-sm">Calculated using Mifflin-St Jeor nutritional equations based on your profile.</p>
+                </div>
+
+                <!-- Clean Personalized Summary: Workouts, Calories, Steps, Active Time, Weekly Progress -->
+                <div class="dash-summary-row mb-2">
+                    <div class="summary-card">
+                        <div class="summary-card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                        <div class="summary-card-content">
+                            <span class="summary-card-label">Workouts</span>
+                            <div class="summary-card-val" id="dash-workouts-count">5</div>
+                            <span class="summary-card-sub">This month</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-card-icon"><i class="fa-solid fa-fire text-accent"></i></div>
+                        <div class="summary-card-content">
+                            <span class="summary-card-label">Calories</span>
+                            <div class="summary-card-val" id="dash-summary-cal">1,640 <span class="summary-unit">kcal</span></div>
+                            <span class="summary-card-sub">Target: <span id="dash-cal-target-pill">2,100</span></span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-card-icon"><i class="fa-solid fa-shoe-prints text-accent"></i></div>
+                        <div class="summary-card-content">
+                            <span class="summary-card-label">Daily Steps</span>
+                            <div class="summary-card-val" id="dash-steps-count">7,420</div>
+                            <span class="summary-card-sub">Goal: 10,000 steps</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-card-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="summary-card-content">
+                            <span class="summary-card-label">Active Time</span>
+                            <div class="summary-card-val" id="dash-minutes-count">119 min</div>
+                            <span class="summary-card-sub">Tracked time</span>
+                        </div>
+                    </div>
+                    <div class="summary-card summary-card-wide">
+                        <div class="summary-card-icon"><i class="fa-solid fa-bullseye text-accent"></i></div>
+                        <div class="summary-card-content" style="width:100%;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <span class="summary-card-label">Weekly Progress</span>
+                                <span class="summary-card-val-sm" id="dash-weekly-goal-text">5 / 7 Days (71%)</span>
+                            </div>
+                            <div class="progress-bar-container mt-1">
+                                <div class="progress-bar" id="dash-weekly-goal-bar" style="width:71%;"></div>
+                            </div>
+                            <span class="summary-card-sub">Consistency over intensity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation Banner Card -->
+                <div class="card mb-2" style="background:linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02)); border:1px solid var(--accent-border); border-left:4px solid var(--accent);">
+                    <div style="display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap;">
+                        <div class="logo-icon-box" style="width:40px; height:40px; font-size:1.15rem; flex-shrink:0;">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div style="flex:1; min-width:240px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+                                <h3 style="margin:0; font-size:1.05rem;"><i class="fa-solid fa-sparkles text-accent"></i> AI Recommendation</h3>
+                                <span class="badge badge-accent" style="font-size:0.68rem;">Personalized</span>
+                            </div>
+                            <p class="text-sm mt-1" id="dash-ai-recommendation-text" style="line-height:1.5; color:var(--text); margin-bottom:0.75rem;">
+                                "Great consistency this week! Based on your <strong>Weight Loss</strong> goal and moderate fitness level, today is ideal for <strong>Day 1: Full Body Strength &amp; Core</strong> followed by a 5-minute cooldown flow."
+                            </p>
+                            <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+                                <button class="btn-primary-sm" onclick="app.navigateTo('assistant')"><i class="fa-solid fa-comments"></i> Ask AI Assistant →</button>
+                                <button class="btn-outline-sm" onclick="app.navigateTo('workout-plans')"><i class="fa-solid fa-dumbbell"></i> Recommended Workouts →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Progress Report CTA Banner -->
+                <div class="monthly-report-banner mb-2">
+                    <div class="monthly-report-info">
+                        <div class="badge badge-accent mb-1"><i class="fa-solid fa-certificate"></i> Automated Real-Data Report</div>
+                        <h3>FITGUIDE AI — Monthly Progress Report [October 2026]</h3>
+                        <p class="text-xs text-muted" style="margin:0;">Tracked biometrics, workout volumes, sets/reps history, macro averages, streaks, and mindful yoga sessions.</p>
+                    </div>
+                    <div class="monthly-report-actions">
+                        <button class="btn-primary" onclick="app.viewMonthlyReport()"><i class="fa-solid fa-eye"></i> View Report →</button>
+                        <button class="btn-secondary" onclick="app.downloadMonthlyReport()"><i class="fa-solid fa-download"></i> Download Report →</button>
+                        <button class="btn-outline-sm" onclick="app.shareMonthlyReport()"><i class="fa-solid fa-share-nodes"></i> Share Report →</button>
+                    </div>
+                </div>
+
+                <!-- Today's Daily Workout Card Preview -->
+                <div class="daily-workout-preview-card mb-2">
+                    <div class="dw-preview-meta">
+                        <span class="dw-tag">Today's Focus</span>
+                        <h3 style="margin:0.25rem 0;" id="dw-preview-title">Day 1: Full Body Strength &amp; Core</h3>
+                        <p class="text-xs text-muted" style="margin:0;">5 Exercises • Zero Equipment Required • 20 Minutes • 160 kcal</p>
+                    </div>
+                    <div class="dw-preview-action">
+                        <button class="btn-primary" onclick="app.navigateTo('workout-plans')"><i class="fa-solid fa-play"></i> Start Workout →</button>
+                    </div>
+                </div>
+
+                <!-- Useful Responsive Workout Cards with Filters (Beginner / Intermediate / Advanced / Yoga / Gentle Movement) -->
+                <div class="card mt-2 mb-2" style="background:var(--card);border-left:3px solid var(--accent);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
+                        <div>
+                            <h3 style="margin:0;"><i class="fa-solid fa-dumbbell text-accent"></i> Responsive Workout Cards</h3>
+                            <p class="text-xs text-muted" style="margin:0.2rem 0 0 0;">Adaptive routines with correct real-human demonstration photos based on your profile.</p>
+                        </div>
+                    </div>
+                    <div class="workout-filter-bar mb-2">
+                        <button class="workout-filter-btn active" data-filter="all" onclick="app.setWorkoutFilter('all')">All</button>
+                        <button class="workout-filter-btn" data-filter="beginner" onclick="app.setWorkoutFilter('beginner')">Beginner</button>
+                        <button class="workout-filter-btn" data-filter="intermediate" onclick="app.setWorkoutFilter('intermediate')">Intermediate</button>
+                        <button class="workout-filter-btn" data-filter="advanced" onclick="app.setWorkoutFilter('advanced')">Advanced</button>
+                        <button class="workout-filter-btn" data-filter="yoga" onclick="app.setWorkoutFilter('yoga')">Yoga</button>
+                        <button class="workout-filter-btn" data-filter="gentle" onclick="app.setWorkoutFilter('gentle')">Gentle Movement</button>
+                    </div>
+                    <div class="workout-plans-grid" id="dash-workout-cards-grid">
+                        <!-- Injected by app.renderWorkoutPlans() -->
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Body / BMI Card -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-scale-balanced text-accent"></i> Body Metrics</h3>
+                        <div class="mt-1">
+                            <p class="text-muted text-xs">Weight &amp; Height</p>
+                            <div class="metric-value" id="dash-weight">70 kg <span class="text-xs text-muted">/ 175 cm</span></div>
+                        </div>
+                        <div class="mt-1">
+                            <p class="text-muted text-xs">Calculated BMI</p>
+                            <div class="metric-value" id="dash-bmi">22.9</div>
+                            <div class="badge mt-1" id="dash-bmi-cat">Normal Weight</div>
+                            <p class="text-xs text-muted mt-1" style="font-size:0.72rem;">*BMI is an initial screening index for general health reference.</p>
+                        </div>
+                    </div>
+
+                    <!-- Daily Calorie Target -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-fire text-accent"></i> Daily Calories</h3>
+                        <div class="mt-1">
+                            <p class="text-muted text-xs">Consumed / Goal</p>
+                            <div class="metric-value"><span id="dash-cal-consumed">0</span> <span class="text-xs text-muted">/ <span id="dash-cal-target">2100</span> kcal</span></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="dash-cal-bar"></div>
+                            </div>
+                            <p class="text-xs text-muted" id="dash-cal-explanation">Calculated from Mifflin-St Jeor equation + activity multiplier.</p>
+                            <div class="tracking-input-group">
+                                <input type="number" id="track-cal-input" placeholder="Add calories (e.g. 350)">
+                                <button class="btn-primary-sm" onclick="app.trackMacro('cal')">Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Protein Target -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-drumstick-bite text-accent"></i> Daily Protein</h3>
+                        <div class="mt-1">
+                            <p class="text-muted text-xs">Consumed / Target</p>
+                            <div class="metric-value"><span id="dash-pro-consumed">0</span> <span class="text-xs text-muted">/ <span id="dash-pro-target">112</span> g</span></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="dash-pro-bar"></div>
+                            </div>
+                            <p class="text-xs text-muted">Supports recovery, muscle preservation, and satiety.</p>
+                            <div class="tracking-input-group">
+                                <input type="number" id="track-pro-input" placeholder="Add protein (g)">
+                                <button class="btn-primary-sm" onclick="app.trackMacro('pro')">Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Movement Streak Card -->
+                    <div class="card streak-card" style="grid-column: 1 / -1;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.85rem;">
+                            <div>
+                                <h3><i class="fa-solid fa-fire" style="color:#f59e0b;"></i> Movement Streak &amp; Habit Tracker</h3>
+                                <p class="text-xs text-muted">Stay consistent! Log your daily workout, yoga flow, or movement session.</p>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:0.65rem;">
+                                <div class="streak-stat-box">
+                                    <div class="streak-stat-number" id="dash-streak-count">1</div>
+                                    <div class="streak-stat-label">🔥 Streak</div>
+                                </div>
+                                <div class="streak-stat-box">
+                                    <div class="streak-stat-number" id="dash-best-streak">1</div>
+                                    <div class="streak-stat-label">🏆 Best</div>
+                                </div>
+                                <div class="streak-stat-box">
+                                    <div class="streak-stat-number" id="dash-total-active">1</div>
+                                    <div class="streak-stat-label">⚡ Total Days</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="weekly-streak-matrix mt-1" id="weekly-streak-matrix">
+                            <!-- Mon-Sun status pills injected by JS -->
+                        </div>
+
+                        <div class="mt-1" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.65rem;">
+                            <span class="text-xs text-muted" id="streak-status-msg">Today's movement: Not logged yet</span>
+                            <button class="btn-primary-sm" id="log-streak-btn" onclick="app.logStreakToday()" style="background:linear-gradient(135deg,#f59e0b,#d97706);border:none;color:white;">
+                                <i class="fa-solid fa-fire"></i> Log Today's Activity (+1 Streak)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Quick Action Navigation Hub -->
+                <div class="dash-quick-hub">
+                    <div class="dash-hub-card" onclick="app.navigateTo('workout-plans')">
+                        <div class="dash-hub-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                        <div>
+                            <h4>Home Workout Plan</h4>
+                            <p class="text-xs text-muted" style="margin:0;">Day 1 to Day 7 routines</p>
+                        </div>
+                    </div>
+                    <div class="dash-hub-card" onclick="app.navigateTo('yoga-library')">
+                        <div class="dash-hub-icon"><i class="fa-solid fa-spa"></i></div>
+                        <div>
+                            <h4>Yoga Collections</h4>
+                            <p class="text-xs text-muted" style="margin:0;">Morning &amp; full body flow</p>
+                        </div>
+                    </div>
+                    <div class="dash-hub-card" onclick="app.navigateTo('nutrition')">
+                        <div class="dash-hub-icon"><i class="fa-solid fa-bowl-food"></i></div>
+                        <div>
+                            <h4>Indian Meal Plan</h4>
+                            <p class="text-xs text-muted" style="margin:0;">Calories &amp; protein targets</p>
+                        </div>
+                    </div>
+                    <div class="dash-hub-card" onclick="app.navigateTo('assistant')">
+                        <div class="dash-hub-icon"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <h4>AI Fitness Assistant</h4>
+                            <p class="text-xs text-muted" style="margin:0;">Personalized Q&amp;A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             4. DEDICATED ONE-PAGE USER PROFILE
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="profile" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <h2>User Fitness &amp; Health Profile</h2>
+                    <p class="text-muted text-sm">Your complete biometric summary, nutrition targets, and active milestone records.</p>
+                </div>
+
+                <div class="profile-grid">
+                    <!-- Column 1: Identity & Avatar -->
+                    <div class="card profile-user-card">
+                        <div class="profile-avatar-box" id="profile-avatar-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h3 id="profile-user-name" style="margin-bottom:0.15rem;">FitGuide Athlete</h3>
+                        <p class="text-xs text-muted" id="profile-user-subtitle">Active Member • Evidence-Informed Plan</p>
+
+                        <div class="mt-1" style="display:flex;justify-content:center;gap:0.4rem;flex-wrap:wrap;">
+                            <span class="profile-badge-pill" id="profile-level-badge">Beginner</span>
+                            <span class="profile-badge-pill" id="profile-goal-badge">Weight Loss</span>
+                            <span class="profile-badge-pill" id="profile-sex-badge">Male</span>
+                        </div>
+
+                        <div class="mt-2" style="border-top:1px solid var(--border-light);padding-top:1rem;display:flex;flex-direction:column;gap:0.5rem;">
+                            <button class="btn-primary btn-block" onclick="app.startAssessment()"><i class="fa-solid fa-pen-to-square"></i> Retake Full Assessment</button>
+                            <div style="display:flex;gap:0.5rem;width:100%;">
+                                <button class="btn-secondary btn-block" onclick="app.showAuthModal()"><i class="fa-solid fa-users"></i> Switch Account</button>
+                                <button class="btn-outline-sm btn-danger-sm btn-block" onclick="app.confirmSignOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Physical & Health Metrics -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-heart-pulse text-accent"></i> Physical &amp; Biometrics</h3>
+                        <div class="mt-1">
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-cake-candles"></i> Age</span>
+                                <span class="profile-stat-val" id="prof-age">28 years</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-venus-mars"></i> Biological Sex</span>
+                                <span class="profile-stat-val" id="prof-sex">Male</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-ruler-vertical"></i> Height</span>
+                                <span class="profile-stat-val" id="prof-height">175 cm</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-weight-scale"></i> Weight</span>
+                                <span class="profile-stat-val" id="prof-weight">70 kg</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-calculator"></i> BMI</span>
+                                <span class="profile-stat-val"><span id="prof-bmi">22.9</span> (<span id="prof-bmi-cat" class="text-accent">Normal</span>)</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-bolt"></i> Estimated BMR</span>
+                                <span class="profile-stat-val" id="prof-bmr">1,640 kcal</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-person-running"></i> Daily TDEE</span>
+                                <span class="profile-stat-val" id="prof-tdee">2,542 kcal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Targets & Preferences -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-bullseye text-accent"></i> Goals &amp; Nutrition</h3>
+                        <div class="mt-1">
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-fire"></i> Calorie Target</span>
+                                <span class="profile-stat-val text-accent" id="prof-target-cal">2,100 kcal</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-drumstick-bite"></i> Protein Target</span>
+                                <span class="profile-stat-val text-accent" id="prof-target-pro">112 g</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-bowl-rice"></i> Diet Type</span>
+                                <span class="profile-stat-val" id="prof-diet">Vegetarian</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-clock"></i> Workout Time</span>
+                                <span class="profile-stat-val" id="prof-time">20 mins/day</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-dumbbell"></i> Equipment</span>
+                                <span class="profile-stat-val" id="prof-equip">No Equipment</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-gauge-high"></i> Intensity</span>
+                                <span class="profile-stat-val" id="prof-intensity">Moderate</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-ban"></i> Food Notes</span>
+                                <span class="profile-stat-val text-xs text-muted" id="prof-food-notes" style="max-width:140px;text-align:right;">None</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 4: Preferences & Settings -->
+                    <div class="card">
+                        <h3><i class="fa-solid fa-sliders text-accent"></i> Preferences &amp; Settings</h3>
+                        <div class="mt-1">
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-circle-half-stroke"></i> App Theme</span>
+                                <button class="btn-outline-sm" onclick="app.toggleTheme()"><span id="profile-theme-label">☀️ Light / Dark</span></button>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-bell"></i> Reminders</span>
+                                <span class="profile-stat-val text-accent">Daily @ 8:00 AM</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-ruler"></i> Measurement System</span>
+                                <span class="profile-stat-val">Metric (kg / cm)</span>
+                            </div>
+                            <div class="profile-stat-row">
+                                <span class="profile-stat-label"><i class="fa-solid fa-shield-halved"></i> Data Storage</span>
+                                <span class="profile-stat-val text-accent">Encrypted Local Data</span>
+                            </div>
+                        </div>
+                        <div class="mt-2" style="border-top:1px solid var(--border-light); padding-top:0.75rem;">
+                            <button class="btn-primary btn-block" onclick="app.startAssessment()"><i class="fa-solid fa-user-pen"></i> Edit Profile &amp; Goals →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streak & Milestones Bar on Profile -->
+                <div class="card mt-2" style="background:var(--card-2);border-left:3px solid #10b981;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.85rem;">
+                        <div>
+                            <h4><i class="fa-solid fa-award text-accent"></i> Milestone &amp; Consistency Record</h4>
+                            <p class="text-xs text-muted" style="margin:0;">Active movement builds sustainable cellular health, endurance, and longevity.</p>
+                        </div>
+                        <div style="display:flex;gap:0.6rem;">
+                            <button class="btn-secondary btn-sm" onclick="app.showStreakModal()"><i class="fa-solid fa-fire text-accent"></i> View Badges</button>
+                            <button class="btn-outline-sm" onclick="app.navigateTo('dashboard')"><i class="fa-solid fa-chart-pie"></i> Open Dashboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             5. 7-DAY WORKOUT PLANS
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="workout-plans" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <div class="badge mb-1">Structured Routines</div>
+                    <h2>FitGuide 7-Day Workout Program</h2>
+                    <p class="text-muted text-sm">Evidence-based home workouts adapted to your fitness level, goals, and equipment.</p>
+                </div>
+
+                <!-- Responsive Workout Cards Filter Bar: Beginner, Intermediate, Advanced, Yoga, Gentle Movement -->
+                <div class="workout-filter-bar mb-2">
+                    <button class="workout-filter-btn active" data-filter="all" onclick="app.setWorkoutFilter('all')">All</button>
+                    <button class="workout-filter-btn" data-filter="beginner" onclick="app.setWorkoutFilter('beginner')">Beginner</button>
+                    <button class="workout-filter-btn" data-filter="intermediate" onclick="app.setWorkoutFilter('intermediate')">Intermediate</button>
+                    <button class="workout-filter-btn" data-filter="advanced" onclick="app.setWorkoutFilter('advanced')">Advanced</button>
+                    <button class="workout-filter-btn" data-filter="yoga" onclick="app.setWorkoutFilter('yoga')">Yoga</button>
+                    <button class="workout-filter-btn" data-filter="gentle" onclick="app.setWorkoutFilter('gentle')">Gentle Movement</button>
+                </div>
+
+                <div class="workout-plans-grid" id="workout-plans-grid">
+                    <!-- Home Workout Plan Card injected here -->
+                </div>
+
+                <!-- 7-Day Program Day Selector Bar -->
+                <div class="day-selector-bar mt-2 mb-2">
+                    <span class="filter-label">📅 Program:</span>
+                    <div class="day-buttons-grid" id="day-buttons-grid">
+                        <button class="day-btn active" data-day="0" onclick="app.selectProgramDay(0)">Day 1 (Mon)</button>
+                        <button class="day-btn" data-day="1" onclick="app.selectProgramDay(1)">Day 2 (Tue)</button>
+                        <button class="day-btn" data-day="2" onclick="app.selectProgramDay(2)">Day 3 (Wed)</button>
+                        <button class="day-btn" data-day="3" onclick="app.selectProgramDay(3)">Day 4 (Thu)</button>
+                        <button class="day-btn" data-day="4" onclick="app.selectProgramDay(4)">Day 5 (Fri)</button>
+                        <button class="day-btn" data-day="5" onclick="app.selectProgramDay(5)">Day 6 (Sat)</button>
+                        <button class="day-btn" data-day="6" onclick="app.selectProgramDay(6)">Day 7 (Sun)</button>
+                    </div>
+                </div>
+
+                <!-- Daily Challenge Hero & Exercise Card -->
+                <div class="card professional-workout-card mt-2" id="daily-workout-card">
+                    <div class="pro-workout-hero">
+                        <img src="assets/images/exercises/ex_squat_human.jpg" alt="Daily Workout Hero" id="pro-hero-img" class="pro-hero-img">
+                        <div class="pro-hero-overlay">
+                            <div class="badge badge-accent mb-1" id="pro-day-badge">DAY 1 • FULL BODY STRENGTH</div>
+                            <h2 id="workout-title" style="color:white;margin-bottom:0.15rem;">Day 1: Full Body Strength &amp; Core</h2>
+                            <p id="workout-subtitle" style="color:rgba(255,255,255,0.82);font-size:0.84rem;margin:0;">5 Targeted Exercises • Zero Equipment • 20 mins</p>
+                        </div>
+                    </div>
+
+                    <div class="pro-workout-body">
+                        <div class="pro-workout-status-bar">
+                            <div class="pro-progress-info" style="font-size:0.84rem;">
+                                <strong>Daily Completion Progress:</strong>
+                                <span id="daily-progress-text">0 of 5 exercises completed (0%)</span>
+                                <span class="strict-streak-notice"><i class="fa-solid fa-lock"></i> Streak unlocks when all daily exercises are finished!</span>
+                            </div>
+                            <div class="progress-bar-container mt-1">
+                                <div class="progress-bar" id="daily-progress-bar" style="width:0%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="workout-timer-box mt-2 text-center">
+                            <div class="workout-timer" id="workout-timer-display">00:00</div>
+                            <div style="display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;">
+                                <button class="btn-primary" id="start-workout-btn" onclick="app.startWorkoutTimer()"><i class="fa-solid fa-play"></i> Start Workout Timer</button>
+                                <button class="btn-secondary hidden" id="stop-workout-btn" onclick="app.stopWorkoutTimer()"><i class="fa-solid fa-circle-pause"></i> Pause Timer</button>
+                                <button class="btn-secondary" onclick="app.startWorkoutPlayerCurrentDay()"><i class="fa-solid fa-circle-play text-accent"></i> Launch Interactive Player</button>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-2 mb-1"><i class="fa-solid fa-list-check text-accent"></i> Today's Exercises (Real Human Demonstrations)</h3>
+                        <div class="professional-exercise-list" id="workout-list">
+                            <!-- Daily exercises injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             6. DEDICATED YOGA LIBRARY
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="yoga-library" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <div class="badge mb-1">Mindful Movement &amp; Balance</div>
+                    <h2>🧘 Dedicated Yoga Library</h2>
+                    <p class="text-muted text-sm">Explore curated yoga collections with real-human demonstrations and filters.</p>
+                </div>
+
+                <h3 class="mb-1"><i class="fa-solid fa-layer-group text-accent"></i> Curated Yoga Collections</h3>
+                <div class="yoga-collections-grid" id="yoga-collections-grid"></div>
+
+                <h3 class="mt-3 mb-1"><i class="fa-solid fa-person-praying text-accent"></i> Individual Yoga Pose Library</h3>
+                <p class="text-xs text-muted mb-2">Search individual poses, read step-by-step instructions, view beginner modifications, and filter by type, level, or duration.</p>
+
+                <input type="text" id="yoga-search" class="search-bar" placeholder="Search yoga poses by English or Sanskrit name (e.g., 'warrior', 'pigeon', 'virabhadrasana')...">
+
+                <div class="filter-group-container">
+                    <div class="filter-row">
+                        <span class="filter-label">Type:</span>
+                        <div class="filter-buttons" id="filter-yoga-type">
+                            <button class="filter-btn active" data-filter="all">All Types</button>
+                            <button class="filter-btn" data-filter="Morning Yoga">Morning Yoga</button>
+                            <button class="filter-btn" data-filter="Full Body Yoga">Full Body Yoga</button>
+                            <button class="filter-btn" data-filter="Gentle Yoga">Gentle Yoga</button>
+                            <button class="filter-btn" data-filter="Flexibility">Flexibility</button>
+                            <button class="filter-btn" data-filter="Mobility">Mobility</button>
+                            <button class="filter-btn" data-filter="Relaxation">Relaxation</button>
+                            <button class="filter-btn" data-filter="Yoga Flow">Yoga Flow</button>
+                        </div>
+                    </div>
+                    <div class="filter-row">
+                        <span class="filter-label">Level:</span>
+                        <div class="filter-buttons" id="filter-yoga-level">
+                            <button class="filter-btn active" data-filter="all">All Levels</button>
+                            <button class="filter-btn" data-filter="Beginner">Beginner</button>
+                            <button class="filter-btn" data-filter="Intermediate">Intermediate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="yoga-poses-grid" id="yoga-poses-grid"></div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             7. MASTER MOVEMENT & EXERCISE LIBRARY
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="exercises" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <h2>Complete Movement &amp; Exercise Library</h2>
+                    <p class="text-muted text-sm">Every movement is demonstrated with a clear real-human photo and form instructions.</p>
+                </div>
+
+                <input type="text" id="ex-search" class="search-bar" placeholder="Search by name, muscle group, or category (e.g., 'squats', 'plank', 'wall sit', 'marching')...">
+
+                <div class="filter-group-container">
+                    <div class="filter-row">
+                        <span class="filter-label">Category:</span>
+                        <div class="filter-buttons" id="filter-category">
+                            <button class="filter-btn active" data-filter="all">All Categories</button>
+                            <button class="filter-btn" data-filter="Home Workout">Home Workout</button>
+                            <button class="filter-btn" data-filter="Gentle Movement">Gentle Movement</button>
+                            <button class="filter-btn" data-filter="Yoga">Yoga</button>
+                            <button class="filter-btn" data-filter="Strength">Strength</button>
+                            <button class="filter-btn" data-filter="Cardio">Cardio</button>
+                            <button class="filter-btn" data-filter="Core">Core</button>
+                            <button class="filter-btn" data-filter="Mobility">Mobility</button>
+                        </div>
+                    </div>
+                    <div class="filter-row">
+                        <span class="filter-label">Goal:</span>
+                        <div class="filter-buttons" id="filter-goal">
+                            <button class="filter-btn active" data-filter="all">All Goals</button>
+                            <button class="filter-btn" data-filter="loss">Weight loss</button>
+                            <button class="filter-btn" data-filter="gain">Weight gain</button>
+                            <button class="filter-btn" data-filter="maintain">Maintain</button>
+                            <button class="filter-btn" data-filter="fitness">Fitness</button>
+                            <button class="filter-btn" data-filter="gentle">Gentle</button>
+                        </div>
+                    </div>
+                    <div class="filter-row">
+                        <span class="filter-label">Intensity:</span>
+                        <div class="filter-buttons" id="filter-intensity">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="Gentle">Gentle</button>
+                            <button class="filter-btn" data-filter="Low">Low</button>
+                            <button class="filter-btn" data-filter="Moderate">Moderate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-cards-grid" id="exercise-grid"></div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             8. PERSONALIZED INDIAN NUTRITION & MEALS
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="nutrition" class="page-section">
+            <div class="container">
+                <div class="text-center mb-2">
+                    <div class="badge mb-1"><i class="fa-solid fa-bowl-food"></i> Personalized Indian Diet</div>
+                    <h2>Personalized Indian Meal Guidance</h2>
+                    <p class="text-muted text-sm">Balanced homemade Indian meals calibrated to your calorie target and protein goal.</p>
+                </div>
+
+                <!-- Summary Target vs Planned Banner -->
+                <div class="nutrition-summary-banner" id="nutrition-summary-banner">
+                    <div>
+                        <h4><i class="fa-solid fa-chart-pie text-accent"></i> Daily Calibrated Targets</h4>
+                        <p class="text-xs text-muted" id="nutrition-target-subtext" style="margin:0;">Personalized based on Mifflin-St Jeor equation and food preferences.</p>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <span class="nutrition-target-pill">🔥 Goal: <strong id="nutri-goal-cal" class="text-accent">2,100 kcal</strong></span>
+                        <span class="nutrition-target-pill">🥩 Protein: <strong id="nutri-goal-pro" class="text-accent">112 g</strong></span>
+                        <span class="nutrition-target-pill">🥗 Diet: <strong id="nutri-diet-tag">Vegetarian</strong></span>
+                    </div>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-section-header">
+                        <h3>🌅 Breakfast Ideas</h3>
+                        <span class="text-xs text-muted">~25% Daily Calorie &amp; Protein Intake</span>
+                    </div>
+                    <div class="meal-grid" id="meal-breakfast"></div>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-section-header">
+                        <h3>🥗 Lunch Ideas</h3>
+                        <span class="text-xs text-muted">~35% Daily Calorie &amp; Protein Intake</span>
+                    </div>
+                    <div class="meal-grid" id="meal-lunch"></div>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-section-header">
+                        <h3>🍎 Healthy Evening Snacks</h3>
+                        <span class="text-xs text-muted">~15% Energy Refuel</span>
+                    </div>
+                    <div class="meal-grid" id="meal-snack"></div>
+                </div>
+
+                <div class="meal-section">
+                    <div class="meal-section-header">
+                        <h3>🍲 Dinner Ideas</h3>
+                        <span class="text-xs text-muted">~25% Restorative Evening Meal</span>
+                    </div>
+                    <div class="meal-grid" id="meal-dinner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ──────────────────────────────────────────────────────────────────
+             9. AI FITNESS ASSISTANT
+        ────────────────────────────────────────────────────────────────────── -->
+        <section id="assistant" class="page-section">
+            <div class="container">
+                <!-- AI Chat Header Banner -->
+                <div class="ai-chat-banner">
+                    <div class="ai-banner-left">
+                        <div class="ai-avatar-ring">
+                            <div class="ai-avatar-inner"><i class="fa-solid fa-robot"></i></div>
+                        </div>
+                        <div>
+                            <h2 style="margin:0;">FitGuide AI Assistant</h2>
+                            <p class="text-xs text-muted" style="margin:0;">Powered by Gemini · Knows your profile · Personalized fitness &amp; nutrition guidance</p>
+                        </div>
+                    </div>
+                    <div class="ai-banner-right">
+                        <div class="chat-status" id="chat-status-indicator">Connected</div>
+                        <button class="btn-outline-sm" onclick="app.clearChat()"><i class="fa-solid fa-rotate-left"></i> Clear Chat</button>
+                    </div>
+                </div>
+
+                <div class="ai-chat-layout">
+                    <!-- Chat Window -->
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message ai">
+                                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                                <div class="msg-content">Hello! I'm your <strong>FitGuide AI Assistant</strong>, powered by Google Gemini. 👋
+
+I have full access to your profile — your body metrics, BMI, calorie &amp; protein targets, diet type, fitness level, and Indian food preferences.
+
+Ask me anything:
+• <em>"Which workout should I do today?"</em>
+• <em>"What Indian breakfast suits my calorie goal?"</em>
+• <em>"How much protein do I need daily?"</em>
+• <em>"Explain my BMI."</em>
+• <em>"Give me a gentle 20-minute yoga routine."</em></div>
+                            </div>
+                        </div>
+
+                        <!-- Typing indicator (hidden by default) -->
+                        <div class="chat-typing" id="chat-typing" style="display:none;">
+                            <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                            <div class="typing-bubble">
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                            </div>
+                        </div>
+
+                        <!-- Prompt suggestion chips -->
+                        <div class="chat-suggestions" id="chat-suggestions">
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('Which workout should I do today?')"><i class="fa-solid fa-dumbbell"></i> Today's workout</button>
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('What Indian breakfast suits my calorie &amp; protein goal?')"><i class="fa-solid fa-sun"></i> Indian breakfast</button>
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('How much protein do I need daily for my goal?')"><i class="fa-solid fa-drumstick-bite"></i> Protein target</button>
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('Explain my BMI and what it means for my fitness plan.')"><i class="fa-solid fa-scale-balanced"></i> My BMI</button>
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('Give me a gentle 20-minute yoga routine.')"><i class="fa-solid fa-spa"></i> Gentle yoga</button>
+                            <button type="button" class="suggestion-chip" onclick="app.sendSuggestion('What should I eat post-workout for recovery?')"><i class="fa-solid fa-bowl-food"></i> Post-workout meal</button>
+                        </div>
+
+                        <div class="chat-input-area">
+                            <input type="text" id="chat-input" placeholder="Ask about workouts, nutrition, BMI, yoga..." onkeydown="app.handleChatEnter(event)" autocomplete="off">
+                            <button id="chat-send-btn" onclick="app.sendMessage()" title="Send Message" aria-label="Send message">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Context Sidebar -->
+                    <div class="ai-context-sidebar">
+                        <div class="ai-sidebar-card">
+                            <div class="ai-sidebar-title"><i class="fa-solid fa-user-check text-accent"></i> Your Active Profile</div>
+                            <div class="ai-profile-stats" id="ai-profile-stats">
+                                <!-- Populated by JS -->
+                            </div>
+                            <button class="btn-outline-sm" style="width:100%;margin-top:0.75rem;" onclick="app.navigateTo('profile')"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</button>
+                        </div>
+                        <div class="ai-sidebar-card" style="margin-top:0.75rem;">
+                            <div class="ai-sidebar-title"><i class="fa-solid fa-lightbulb text-accent"></i> Quick Tips</div>
+                            <ul class="ai-tips-list">
+                                <li>Be specific — mention goals, constraints, or injuries</li>
+                                <li>Ask for meal plans by calorie or meal time</li>
+                                <li>Request step-by-step exercise instructions</li>
+                                <li>Ask about yoga poses for your fitness level</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MOBILE BOTTOM NAVIGATION BAR
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <div class="bottom-nav-inner">
+            <button class="bottom-nav-item active" id="bnav-home" onclick="app.navigateTo('home');updateBottomNav('home');">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-dashboard" onclick="app.navigateTo('dashboard');updateBottomNav('dashboard');">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </button>
+            <button class="bottom-nav-item bnav-ai-btn" id="bnav-assistant" onclick="app.navigateTo('assistant');updateBottomNav('assistant');">
+                <div class="bnav-ai-pulse"></div>
+                <i class="fa-solid fa-robot"></i>
+                <span>AI</span>
+            </button>
+            <button class="bottom-nav-item" id="bnav-profile" onclick="app.navigateTo('profile');updateBottomNav('profile');">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         EXERCISE / YOGA DETAIL MODAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="exercise-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal" onclick="app.closeExerciseModal()" aria-label="Close modal"><i class="fa-solid fa-times"></i></button>
+            <div class="modal-img-wrap">
+                <img src="" alt="Exercise demonstration" class="modal-img" id="modal-img">
+            </div>
+            <div class="modal-body">
+                <div class="ex-tags" id="modal-tags" style="display:flex;gap:0.3rem;margin-bottom:0.5rem;flex-wrap:wrap;"></div>
+                <h2 id="modal-title" style="margin-bottom:0.32rem;">Exercise Name</h2>
+
+                <div class="ex-meta" style="font-size:0.84rem;color:var(--text-2);margin-bottom:0.6rem;">
+                    <div><strong>Target Area:</strong> <span id="modal-target"></span></div>
+                    <div><strong>Equipment:</strong> <span id="modal-equip"></span></div>
+                </div>
+
+                <div class="ex-meta" style="background:var(--bg-2);padding:0.62rem 0.85rem;border-radius:var(--r-sm);display:flex;gap:1rem;flex-wrap:wrap;font-size:0.8rem;font-weight:600;">
+                    <div><i class="fa-solid fa-layer-group text-accent"></i> <span id="modal-sets"></span> Sets</div>
+                    <div><i class="fa-solid fa-rotate-right text-accent"></i> <span id="modal-reps"></span></div>
+                    <div><i class="fa-solid fa-clock text-accent"></i> <span id="modal-rest"></span> Rest</div>
+                    <div><i class="fa-solid fa-gauge text-accent"></i> <span id="modal-intensity"></span></div>
+                </div>
+
+                <h4 class="mt-2" style="font-size:0.9rem;font-weight:700;">Step-by-Step Instructions</h4>
+                <ol class="instruction-list" id="modal-instructions"></ol>
+
+                <h4 class="mt-1" style="font-size:0.9rem;font-weight:700;">Beginner Modification</h4>
+                <p id="modal-mod" class="text-sm text-muted"></p>
+
+                <div id="modal-benefits-container" class="benefits-box">
+                    <strong><i class="fa-solid fa-spa text-accent"></i> General Benefits:</strong>
+                    <span id="modal-benefits"></span>
+                </div>
+
+                <div class="safety-box">
+                    <strong><i class="fa-solid fa-shield-halved"></i> Safety Guidance:</strong>
+                    <span id="modal-safety"></span>
+                </div>
+
+                <button class="btn-primary btn-block mt-2" onclick="app.closeExerciseModal()">
+                    <i class="fa-solid fa-check"></i> Got It
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         HOME WORKOUT PLAN SCHEDULE MODAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="plan-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="app.closePlanModal()"><i class="fa-solid fa-times"></i></button>
+            <div class="modal-img-wrap">
+                <img src="assets/images/exercises/ex_squat_human.jpg" alt="Home Workout Plan Schedule" class="modal-img" id="plan-modal-img">
+            </div>
+            <div class="modal-body">
+                <div class="badge mb-1">Beginner • Low-Moderate • No Equipment</div>
+                <h2 id="plan-modal-title">Home Workout Plan Schedule</h2>
+                <p class="text-xs text-muted" id="plan-modal-desc"></p>
+
+                <h4 class="mt-2"><i class="fa-solid fa-calendar-days text-accent"></i> Weekly Schedule</h4>
+                <table class="schedule-table" id="plan-modal-schedule"></table>
+
+                <button class="btn-primary btn-block mt-3" onclick="app.closePlanModal(); app.startWorkoutPlayer('home-workout-plan');">
+                    <i class="fa-solid fa-play"></i> Launch Workout Player
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         INTERACTIVE WORKOUT & YOGA PLAYER MODAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="routine-modal">
+        <div class="modal-content small-container" style="max-width:480px;">
+            <button class="modal-close" onclick="app.closePlayerModal()"><i class="fa-solid fa-times"></i></button>
+            <div class="player-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="player-progress-bar"></div>
+                </div>
+
+                <div class="badge mt-1" id="player-badge">Home Workout Plan</div>
+                <div class="player-pose-title" id="player-title">Squats</div>
+                <p class="text-xs text-muted" id="player-target">Quadriceps, Glutes</p>
+
+                <div id="player-rest-indicator" class="hidden" style="margin:0.3rem 0;">
+                    <span class="badge" style="background:rgba(245,158,11,0.2);color:#d97706;border-color:#f59e0b;"><i class="fa-solid fa-mug-hot"></i> REST PERIOD</span>
+                </div>
+
+                <img src="assets/images/exercises/ex_squat_human.jpg" id="player-img" class="player-pose-img" alt="Exercise demonstration">
+
+                <div class="player-timer" id="player-timer">00:45</div>
+                <p class="text-xs text-muted" id="player-step-count">Exercise 1 of 9</p>
+                <p class="text-xs text-accent" id="player-alt-note"></p>
+
+                <div class="player-controls">
+                    <button class="btn-secondary btn-sm" onclick="app.prevPlayerItem()"><i class="fa-solid fa-backward"></i> Prev</button>
+                    <button class="btn-primary" id="player-toggle-btn" onclick="app.togglePlayerTimer()"><i class="fa-solid fa-pause"></i> Pause</button>
+                    <button class="btn-secondary btn-sm" onclick="app.nextPlayerItem()">Next <i class="fa-solid fa-forward"></i></button>
+                    <button class="btn-outline-sm" onclick="app.closePlayerModal()"><i class="fa-solid fa-circle-check"></i> Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         STREAK DETAIL & ACHIEVEMENTS MODAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="streak-modal">
+        <div class="modal-content small-container" style="max-width:460px;">
+            <button class="modal-close" onclick="app.closeStreakModal()"><i class="fa-solid fa-times"></i></button>
+            <div class="modal-body text-center">
+                <div style="font-size:2.8rem;line-height:1;margin-bottom:0.35rem;">🔥</div>
+                <h2>Movement Streak &amp; Badges</h2>
+                <p class="text-muted text-xs mb-2">Consistency is the secret to sustainable fitness, mental clarity and longevity.</p>
+
+                <div style="display:flex;justify-content:center;gap:0.6rem;margin-bottom:1.25rem;">
+                    <div class="streak-stat-box" style="flex:1;">
+                        <div class="streak-stat-number" id="modal-streak-current">1</div>
+                        <div class="streak-stat-label">Current Streak</div>
+                    </div>
+                    <div class="streak-stat-box" style="flex:1;">
+                        <div class="streak-stat-number" id="modal-streak-best">1</div>
+                        <div class="streak-stat-label">Best Record</div>
+                    </div>
+                    <div class="streak-stat-box" style="flex:1;">
+                        <div class="streak-stat-number" id="modal-streak-total">1</div>
+                        <div class="streak-stat-label">Total Days</div>
+                    </div>
+                </div>
+
+                <h4>Milestone Badges</h4>
+                <div class="achievements-list mt-1 mb-2" id="streak-achievements-list" style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;">
+                    <!-- Badges populated by JS -->
+                </div>
+
+                <button class="btn-primary btn-block" onclick="app.logStreakToday(); app.closeStreakModal();">
+                    <i class="fa-solid fa-fire"></i> Log Today's Movement (+1 Streak)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MY MONTHLY REPORT MODAL (Real Saved Data, Never Fake)
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="monthly-report-modal" class="modal-overlay">
+        <div class="modal-card report-modal-card">
+            <div class="modal-header">
+                <div>
+                    <span class="badge badge-accent mb-1"><i class="fa-solid fa-file-waveform"></i> Official Fitness Record</span>
+                    <h2 id="rep-month-title" style="margin:0;">FITGUIDE AI — Monthly Progress Report [October 2026]</h2>
+                    <p class="text-xs text-muted" style="margin-top:0.25rem;">
+                        Athlete: <strong id="rep-athlete-name" class="text-white">Alex Mercer</strong> •
+                        <span id="rep-athlete-sex">MALE</span> • Goal: <span id="rep-athlete-goal">WEIGHT LOSS</span>
+                    </p>
+                </div>
+                <button class="modal-close" onclick="app.closeMonthlyReportModal()" aria-label="Close Report">&times;</button>
+            </div>
+
+            <div class="modal-body report-modal-body">
+                <!-- Action Bar: View, Download, Share -->
+                <div class="report-action-bar mb-2">
+                    <div class="report-action-notice">
+                        <i class="fa-solid fa-shield-check text-accent"></i> Real saved session metrics. Zero synthetic data.
+                    </div>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <button class="btn-primary-sm" onclick="app.downloadMonthlyReport()">
+                            <i class="fa-solid fa-download"></i> Download Report →
+                        </button>
+                        <button class="btn-outline-sm" onclick="app.shareMonthlyReport()">
+                            <i class="fa-solid fa-share-nodes"></i> Share Report →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section A: Biometric Weight & Goal Progress -->
+                <div class="report-section-card mb-2">
+                    <h3 class="report-section-title"><i class="fa-solid fa-scale-balanced text-accent"></i> Weight Evolution &amp; Goal Milestones</h3>
+                    <div class="report-metrics-grid">
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Starting Weight</span>
+                            <div class="report-stat-num" id="rep-start-weight">72.0 kg</div>
+                            <span class="report-stat-sub">Baseline assessment</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Current Weight</span>
+                            <div class="report-stat-num" id="rep-curr-weight">70.0 kg</div>
+                            <span class="report-stat-sub">Latest weigh-in</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Net Delta</span>
+                            <div class="report-stat-num" id="rep-diff-weight">-2.0 kg</div>
+                            <span class="report-stat-sub">Progress towards target</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Monthly Goal Progress</span>
+                            <div class="report-stat-num" id="rep-goal-pct">78% Achieved</div>
+                            <div class="progress-bar-container mt-1">
+                                <div class="progress-bar" id="rep-goal-bar" style="width:78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B: Training Volume & Consistency -->
+                <div class="report-section-card mb-2">
+                    <h3 class="report-section-title"><i class="fa-solid fa-dumbbell text-accent"></i> Training Volume &amp; Energy Output</h3>
+                    <div class="report-metrics-grid">
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Workouts Completed</span>
+                            <div class="report-stat-num" id="rep-total-workouts">5</div>
+                            <span class="report-stat-sub">Structured sessions</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Total Minutes</span>
+                            <div class="report-stat-num" id="rep-total-minutes">119 min</div>
+                            <span class="report-stat-sub">Time under tension</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Estimated Calories</span>
+                            <div class="report-stat-num" id="rep-total-calories">1,640 kcal</div>
+                            <span class="report-stat-sub">Burned via movement</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Movement Streak</span>
+                            <div class="report-stat-num" id="rep-streak-count">5 Days</div>
+                            <span class="report-stat-sub">Unbroken momentum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C: Nutrition Targets vs Averages & Mindful Movement -->
+                <div class="report-section-card mb-2">
+                    <h3 class="report-section-title"><i class="fa-solid fa-bowl-food text-accent"></i> Nutrition Balance &amp; Mindful Recovery</h3>
+                    <div class="report-metrics-grid">
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Calorie Target vs Real Avg</span>
+                            <div class="report-stat-num-sm" id="rep-cal-targets">2050 avg / 2100 target kcal</div>
+                            <span class="report-stat-sub">Mifflin-St Jeor calibration</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Protein Target vs Real Avg</span>
+                            <div class="report-stat-num-sm" id="rep-pro-targets">112g avg / 115g target</div>
+                            <span class="report-stat-sub">Muscle protein synthesis</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Yoga Movement</span>
+                            <div class="report-stat-num-sm" id="rep-yoga-sessions">1 Flow Session</div>
+                            <span class="report-stat-sub">Flexibility &amp; mobility</span>
+                        </div>
+                        <div class="report-stat-box">
+                            <span class="report-stat-lbl">Gentle Recovery</span>
+                            <div class="report-stat-num-sm" id="rep-gentle-sessions">1 Recovery Session</div>
+                            <span class="report-stat-sub">Joint health &amp; de-stress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section D: 31-Day October Activity Matrix -->
+                <div class="report-section-card mb-2">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <h3 class="report-section-title" style="margin:0;"><i class="fa-solid fa-calendar-days text-accent"></i> 31-Day Movement Log Matrix</h3>
+                        <div class="report-matrix-legend">
+                            <span class="rep-legend-item"><span class="rep-dot dot-completed"></span> Completed</span>
+                            <span class="rep-legend-item"><span class="rep-dot dot-today"></span> Today (Active)</span>
+                            <span class="rep-legend-item"><span class="rep-dot dot-rest"></span> Rest / Scheduled</span>
+                        </div>
+                    </div>
+                    <div class="rep-days-matrix" id="rep-days-matrix">
+                        <!-- 31 days dynamically populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Section E: Daily Exercise History & Log -->
+                <div class="report-section-card mb-2">
+                    <h3 class="report-section-title"><i class="fa-solid fa-list-check text-accent"></i> Daily Exercise History (Sets, Reps, Duration)</h3>
+                    <div class="table-responsive">
+                        <table class="report-exercise-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Exercise / Pose</th>
+                                    <th>Category</th>
+                                    <th>Sets × Reps</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rep-exercise-table-body">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Section F: Milestone Achievements & Data-Based Insights -->
+                <div class="report-section-card mb-2">
+                    <h3 class="report-section-title"><i class="fa-solid fa-trophy text-accent"></i> Milestone Achievements &amp; Data-Based Insights</h3>
+                    
+                    <span class="report-stat-lbl mb-1" style="display:block;">Earned Milestone Badges:</span>
+                    <div class="report-achievements-grid mb-2" id="rep-achievements-container" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:0.6rem;">
+                        <!-- Dynamic real milestone badges injected by JS -->
+                    </div>
+
+                    <div class="report-insights-card" style="background:var(--card-2);border-left:3px solid var(--accent);border-radius:var(--r-sm);padding:0.9rem 1.1rem;">
+                        <strong style="font-size:0.86rem;color:var(--text);display:flex;align-items:center;gap:0.4rem;">
+                            <i class="fa-solid fa-brain text-accent"></i> Real-Data Intelligence &amp; Adherence Insights:
+                        </strong>
+                        <ul class="report-insights-list mt-1" id="rep-insights-list" style="margin:0;padding-left:1.2rem;font-size:0.8rem;color:var(--text-2);line-height:1.6;">
+                            <!-- Dynamic insights injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer" style="display:flex;justify-content:flex-end;gap:0.5rem;">
+                <button class="btn-secondary" onclick="app.closeMonthlyReportModal()">Close</button>
+                <button class="btn-primary" onclick="app.downloadMonthlyReport()"><i class="fa-solid fa-download"></i> Download Report →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECURE ATHLETE AUTHENTICATION MODAL (Multi-User Data Isolation)
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-card auth-modal-card">
+            <div class="modal-header">
+                <div>
+                    <span class="badge badge-accent mb-1"><i class="fa-solid fa-shield-halved"></i> Secure FitGuide Session</span>
+                    <h2 style="margin:0;">Athlete Portal</h2>
+                    <p class="text-xs text-muted" style="margin-top:0.25rem;">Personalized profile, streaks, and reports are securely isolated.</p>
+                </div>
+                <button class="modal-close" onclick="app.closeAuthModal()" aria-label="Close Dialog">&times;</button>
+            </div>
+
+            <!-- 1-Click Quick Athlete Switcher for instant demo/verification -->
+            <div class="quick-demo-athletes">
+                <span class="text-xs text-muted" style="font-weight:600;display:block;margin-bottom:0.4rem;">QUICK ATHLETE SWITCH:</span>
+                <div style="display:flex;gap:0.5rem;">
+                    <button class="quick-user-btn" onclick="app.loginUser('alex', 'password123')">
+                        <span class="qu-avatar">♂</span>
+                        <div class="qu-info">
+                            <strong>Alex Mercer</strong>
+                            <small>MALE • Strength &amp; Core</small>
+                        </div>
+                    </button>
+                    <button class="quick-user-btn" onclick="app.loginUser('elena', 'password123')">
+                        <span class="qu-avatar">♀</span>
+                        <div class="qu-info">
+                            <strong>Elena Vance</strong>
+                            <small>FEMALE • Toning &amp; Yoga</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs mt-2">
+                <button class="auth-tab-btn active" data-tab="signin" onclick="app.switchAuthTab('signin')">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup" onclick="app.switchAuthTab('signup')">Create Account</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="auth-signin-form" class="auth-form mt-2" onsubmit="event.preventDefault(); app.loginUser(document.getElementById('auth-login-username').value, document.getElementById('auth-login-password').value);">
+                <div class="form-group mb-1">
+                    <label class="form-label" for="auth-login-username">Username or Email</label>
+                    <input type="text" id="auth-login-username" class="form-control" placeholder="e.g. alex or elena" required value="alex">
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-label" for="auth-login-password">Password</label>
+                    <input type="password" id="auth-login-password" class="form-control" placeholder="••••••••" required value="password123">
+                </div>
+                <button type="submit" class="btn-primary btn-block">Sign In to FitGuide AI →</button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="auth-signup-form" class="auth-form mt-2" style="display:none;" onsubmit="event.preventDefault(); app.registerUser(document.getElementById('auth-reg-username').value, document.getElementById('auth-reg-name').value, document.getElementById('auth-reg-email').value, document.getElementById('auth-reg-password').value, document.getElementById('auth-reg-sex').value);">
+                <div class="form-group mb-1">
+                    <label class="form-label" for="auth-reg-name">Full Name</label>
+                    <input type="text" id="auth-reg-name" class="form-control" placeholder="e.g. Maya Lin" required>
+                </div>
+                <div class="form-group mb-1">
+                    <label class="form-label" for="auth-reg-username">Username</label>
+                    <input type="text" id="auth-reg-username" class="form-control" placeholder="e.g. mayal" required>
+                </div>
+                <div class="form-group mb-1">
+                    <label class="form-label" for="auth-reg-email">Email Address</label>
+                    <input type="email" id="auth-reg-email" class="form-control" placeholder="e.g. maya@example.com" required>
+                </div>
+                <div class="form-group mb-1">
+                    <label class="form-label" for="auth-reg-sex">Biological Sex (for calorie formulas &amp; human photos)</label>
+                    <select id="auth-reg-sex" class="form-control" required>
+                        <option value="male">Male (Male Athlete Visuals &amp; Mifflin-St Jeor Formula)</option>
+                        <option value="female">Female (Female Athlete Visuals &amp; Mifflin-St Jeor Formula)</option>
+                    </select>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-label" for="auth-reg-password">Password</label>
+                    <input type="password" id="auth-reg-password" class="form-control" placeholder="Create password" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Create Personal Athlete Account →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SECURE SIGN OUT CONFIRMATION MODAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="signout-modal" class="modal-overlay">
+        <div class="modal-card signout-modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 style="margin:0;"><i class="fa-solid fa-arrow-right-from-bracket text-accent"></i> Confirm Sign Out</h3>
+                </div>
+                <button class="modal-close" onclick="app.cancelSignOut()" aria-label="Cancel">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:1.25rem 0;">
+                <p style="margin:0;font-size:0.92rem;line-height:1.5;">
+                    Are you sure you want to sign out, <strong id="signout-user-name" class="text-white">Athlete</strong>?
+                </p>
+                <p class="text-xs text-muted" style="margin-top:0.6rem;line-height:1.5;">
+                    All your tracked workouts, calories, streaks, and personal fitness records are securely stored. You will need to authenticate again before accessing your personal data.
+                </p>
+            </div>
+            <div class="modal-footer" style="display:flex;justify-content:flex-end;gap:0.6rem;">
+                <button class="btn-secondary" onclick="app.cancelSignOut()">Cancel</button>
+                <button class="btn-outline-sm btn-danger-sm" onclick="app.executeSignOut()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TOAST NOTIFICATION CONTAINER
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MEDICAL & HEALTH DISCLAIMER FOOTER
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <strong><i class="fa-solid fa-circle-exclamation text-accent"></i> Medical Disclaimer:</strong>
+                FitGuide AI is an informational and educational fitness tool designed for general wellness and healthy adults. It does not provide medical diagnoses, prescribe pharmaceuticals or treatments, or endorse extreme caloric restriction. Consult an appropriately qualified physician or registered healthcare provider before undertaking any new exercise, yoga, or dietary program.
+            </div>
+            <p class="copyright">&copy; 2026 FitGuide AI. All rights reserved. Empowering mindful movement and balanced nutrition.</p>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <script src="js/data.js"></script>
+    <script src="js/calculators.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Splash screen + bottom nav init script -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ── Splash screen animation ── */
+        const splash      = document.getElementById('splash-screen');
+        const splashBg    = document.getElementById('splash-bg');
+        const splashContent = document.getElementById('splash-content');
+        const progressBar = document.getElementById('splash-progress');
+        const navbar      = document.getElementById('main-navbar');
+        const appContainer= document.getElementById('app-container');
+        const bottomNavEl = document.getElementById('bottom-nav');
+
+        let progress = 0;
+        const DURATION_MS = 3200;
+        const INTERVAL_MS = 40;
+        const INCREMENT   = (INTERVAL_MS / DURATION_MS) * 100;
+
+        // Kick off subtle animations
+        requestAnimationFrame(() => {
+            splash.classList.add('animating');
+        });
+
+        const ticker = setInterval(() => {
+            progress = Math.min(progress + INCREMENT, 100);
+            progressBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(ticker);
+                setTimeout(revealApp, 200);
+            }
+        }, INTERVAL_MS);
+
+        function revealApp() {
+            splash.classList.add('exiting');
+            setTimeout(() => {
+                splash.style.display    = 'none';
+                navbar.style.display    = '';
+                appContainer.style.display = '';
+                // Show bottom nav on mobile
+                if (window.innerWidth <= 768 && bottomNavEl) {
+                    bottomNavEl.style.display = 'flex';
+                }
+            }, 700);
+        }
+
+        /* ── Bottom nav active state ── */
+        window.updateBottomNav = function(pageId) {
+            document.querySelectorAll('.bottom-nav-item').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const target = document.getElementById('bnav-' + pageId);
+            if (target) target.classList.add('active');
+        };
+
+        /* ── Keep bottom nav in sync when navigateTo is called ── */
+        const navMap = {
+            'home':          'home',
+            'dashboard':     'dashboard',
+            'exercises':     'home',
+            'workout-plans': 'dashboard',
+            'yoga-library':  'home',
+            'nutrition':     'dashboard',
+            'profile':       'profile',
+            'assistant':     'assistant'
+        };
+        // Intercept navigateTo to sync bottom nav
+        window.addEventListener('load', () => {
+            if (window.app && app.navigateTo) {
+                const orig = app.navigateTo.bind(app);
+                app.navigateTo = function(page) {
+                    orig(page);
+                    if (navMap[page]) updateBottomNav(navMap[page]);
+                };
+            }
+        });
+
+        /* ── Show/hide bottom nav on resize ── */
+        window.addEventListener('resize', () => {
+            if (bottomNavEl) {
+                if (window.innerWidth <= 768) {
+                    if (splash.style.display === 'none') {
+                        bottomNavEl.style.display = 'flex';
+                    }
+                } else {
+                    bottomNavEl.style.display = 'none';
+                }
+            }
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
